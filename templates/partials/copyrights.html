@@ -1,0 +1,8 @@
+{% block copyrights %}
+<div class="copyrights">
+    <p>
+       &copy;<time datetime="{{ now() | date(format="%Y") }}">{{ now() | date(format="%Y") }}</time>
+       &nbsp;{{ trans(key="author", lang=lang) }}. All rights reserved.
+    </p>
+</div>
+{% endblock %}
