@@ -1,5 +1,5 @@
 
-$decoration-font-family: Athelas, STHeiti, Microsoft Yahei, serif;
+$decoration-font-family: 'Scheherazade New', Athelas, STHeiti, Microsoft Yahei, serif;
 /* Basic */
 html {
     font-family: 'Scheherazade New', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
@@ -300,7 +300,7 @@ article header h2 {
 }
 
 .article-date {
-    display: inline-block;
+    display: block;
     white-space: nowrap;
 }
 
@@ -327,6 +327,9 @@ article header h2 {
     li {
         display: inline;
         margin-right: 0.2em;
+        a {
+            color:chocolate;
+        }
     }
 }
 
