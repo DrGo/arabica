@@ -8,12 +8,12 @@
 
 <ul class="terms">
     {% for term in terms %}
-    <li>
+    {# <li> #}
         <a href="{{ term.permalink }}">
-        #{{ term.name }}
+        {{ term.name }}
         </a>
         ({{ term.pages | length }})
-    </li>
+    {# </li> #}
     {% endfor %}
 </ul>
 {% endblock content %}
