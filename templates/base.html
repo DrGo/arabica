@@ -40,64 +40,11 @@
     <meta property="og:type" content="website">
     {% endblock ogp_head %}
 
-    {% block extra_head %}
-    {% endblock extra_head %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&display=swap" rel="stylesheet">    
-    <style>
-        .dropdown {
-            float: inline-end;
-            overflow: hidden;
-        }
-
-        .dropdown .dropbtn {
-            cursor: pointer;
-            border: none;
-            outline: none;
-            color: black;
-            padding: 4px 5px;
-            background-color: inherit;
-            font-family: inherit;
-            margin: 0;
-        }
-
-        .dropdown:hover .dropbtn,
-        .dropbtn:focus {
-            border: 1px black solid;
-        }
-        
-        /*children only passes events to button*/
-        .dropbtn * {
-            pointer-events: none;
-        }
-
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-        }
-
-        .dropdown-content a {
-            float: none;
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-            text-align: left;
-        }
-
-        .dropdown-content a:hover {
-            background-color: #ddd;
-        }
-
-        .show {
-            display: block;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    {% block extra_head %}
+    {% endblock extra_head %}
 </head>
 
 <body>
@@ -112,9 +59,7 @@
                 <ul>
                     {% block nav_bar %}
                     {% set menu_items = config.extra.menu_items%}
-                    {% if pdir == "rtl"%}
-                    {% set menu_items = config.extra.menu_items | reverse %}
-                    {% endif %}
+
                     {% for subsec in menu_items %}
                     {% set link_url = subsec.url | replace(from="$BASE_URL", to=config.base_url) |
                     replace(from="$LANG_BASE_URL", to=base_url) %}
@@ -140,9 +85,11 @@
                                 {% endfor %}
                             </div>
                     </li>
+                    {% if config.build_search_index %}
                     <li class="search-container">
                         <input id="search" type="search" placeholder="🔎 Search the docs">
                     </li>
+                    {% endif %}
                     {% endblock nav_bar %}
                 </ul>
             </nav>

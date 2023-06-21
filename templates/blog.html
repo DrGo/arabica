@@ -6,14 +6,14 @@
 {% block content %}
 <main id="main" tabindex="-1">
     {% block heading %}
-    <p>
+    {# <p>
         {% if section.relative_path is ending_with("." ~ lang ~ ".md") %}
             {% set tags_url = "/" ~ lang ~ "/tags" %}
         {% else %}
             {% set tags_url = "/tags" %}
         {% endif %}
         {{ trans(key="view_by", lang=lang) }}: <a href={{ tags_url }}>{{ trans(key="tags", lang=lang) }}</a>
-    </p>
+    </p> #}
     {% endblock heading %}
     {% if paginator.pages %}
         {% for page in paginator.pages %}
