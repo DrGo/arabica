@@ -1,22 +1,8 @@
 {% import "macros/social.html" as social_macros %}
-
-{% if lang %}
-{% set plang = lang %}
-{% else %}
-{% set plang = "en" %}
-{% endif %}
-
-{% if plang == "ar" %}
-{% set pdir = "rtl" %}
-{% else %}
-{% set pdir = "ltr" %}
-{% endif %}
-
-{# {% if page.extra.lang %}{{ plang=page.extra.lang }}{% endif %} #}
-
+{% if lang %} {% set plang = lang %} {% else %} {% set plang = "en" %} {% endif %}
+{% if plang == "ar" %} {% set pdir = "rtl" %} {% else %} {% set pdir = "ltr" %} {% endif %}
 <!DOCTYPE html>
 <html lang="{{ plang }}" dir={{ pdir }} prefix="og: http://ogp.me/ns#">
-
 <head>
     <meta charset="utf-8">
     <meta name="HandheldFriendly" content="True">
@@ -29,7 +15,6 @@
     {% set color_mode_css_path = config.extra.color_mode ~ ".css" %}
     <link rel="stylesheet" href="{{ get_url(path="base.css", trailing_slash=false) }}">
     <link rel="stylesheet" href="{{ get_url(path=color_mode_css_path, trailing_slash=false) }}">
-
     {% if config.generate_feed %}
     <link rel="alternate" type={% if config.feed_filename=="atom.xml" %}"application/atom+xml"{% else
         %}"application/rss+xml"{% endif %} title="RSS" href="{{ get_url(path=config.feed_filename) | safe }}">
@@ -64,7 +49,7 @@
                     {% set link_url = subsec.url | replace(from="$BASE_URL", to=config.base_url) |
                     replace(from="$LANG_BASE_URL", to=base_url) %}
                     <li><a {% if current_url and current_url is starting_with(link_url) %}class="active" {% endif %}
-                            href="{{ link_url }}">{{ trans(key=subsec.name, lang=lang) }}</a></li>
+                            href="{{ link_url | safe }}">{{ trans(key=subsec.name, lang=lang) }}</a></li>
                     {% endfor %}
                     <li class="dropdown">
                             <button onclick="myFunction()" class="dropbtn">
@@ -79,9 +64,9 @@
                             <div id="myDropdown" class="dropdown-content">
                                 {% for subsec in config.extra.language_items %}
                                     {% set link_url = subsec.url | replace(from="$BASE_URL", to=config.base_url) |
-                                    replace(from="$LANG_BASE_URL", to=base_url) %}
+                                    replace(from="$LANG_BASE_URL", to=base_url)| replace(from="//", to="/") %}
                                 <a {% if current_url and current_url is starting_with(link_url) %}class="active" {% endif %}
-                                href="{{ link_url }}">{{ trans(key=subsec.name, lang=lang) }}</a>
+                                href="{{ link_url | safe }}">{{ trans(key=subsec.name, lang=lang) }}</a>
                                 {% endfor %}
                             </div>
                     </li>
@@ -96,6 +81,7 @@
         </header>
         {% endblock header %}
         {% block content %}
+        test
         <div sclass="search-results">
             <div class="search-results__items"></div>
         </div>

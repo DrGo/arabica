@@ -16,6 +16,7 @@
             <h2>
                 {{ trans(key=subsec.recent_trans_key, lang=lang) }}
             </h2>
+            {% if section.extra.column_header %}{{ section.extra.column_header | markdown(inline=true) | safe}}{% endif%}
             {% if section.subsections is containing(subsec.name ~ "/_index." ~ lang ~ ".md") %}
                 {% set subsec_path = subsec.name ~ "/_index." ~ lang ~ ".md" %}
                 {% set subsec_link_path = lang ~ "/" ~ subsec.name ~ "/" %}
@@ -33,3 +34,4 @@
     {% endfor %}
 </main>
 {% endblock content %}
+
